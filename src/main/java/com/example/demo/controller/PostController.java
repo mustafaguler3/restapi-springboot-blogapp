@@ -17,13 +17,35 @@ public class PostController {
     public PostController(PostService postService) {
         this.postService = postService;
     }
+
     @PostMapping
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
     }
+
     @GetMapping
-    public List<PostDto> getAllPosts(){
-        return postService.getAllPosts();
+    public List<PostDto> getAllPosts(
+            @RequestParam(value = "pageNo",defaultValue = "0",required = false) int pageNo,
+            @RequestParam(value = "pageSize",defaultValue = "10",required = false) int pageSize){
+        return postService.getAllPosts(pageNo,pageSize);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable("id") long id){
+        return ResponseEntity.ok(postService.getPostById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,@PathVariable(name = "id") long id){
+        PostDto postResponse = postService.updatePost(postDto,id);
+
+        return new ResponseEntity<>(postResponse,HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id){
+        postService.deletePost(id);
+
+        return new ResponseEntity<>("Post entity deleted successfully",HttpStatus.OK);
     }
 }
 
