@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,7 +43,7 @@ public class CommentController {
     public ResponseEntity<CommentDto> updateComment(
             @PathVariable(value = "id") Long commentId,
             @PathVariable(value = "postId") Long postId,
-            @RequestBody CommentDto commentDto){
+            @Valid @RequestBody CommentDto commentDto){
 
         CommentDto updated = commentService.updateComment(postId,commentId,commentDto);
 
