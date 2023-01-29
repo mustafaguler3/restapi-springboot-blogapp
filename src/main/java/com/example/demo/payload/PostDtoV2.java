@@ -5,9 +5,10 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
-public class PostDto {
+public class PostDtoV2 {
     private long id;
     @NotEmpty
     @Size(min = 2,message = "Post title should have at least 2 characters")
@@ -18,9 +19,8 @@ public class PostDto {
     @NotEmpty
     private String content;
     private Category category;
+    private List<String> tags;
 }
-
-
 
 
 

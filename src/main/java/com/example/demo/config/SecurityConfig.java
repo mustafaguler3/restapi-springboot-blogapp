@@ -50,6 +50,7 @@ public class SecurityConfig {
                         //authorize.anyRequest().authenticated()
                         authorize.antMatchers(HttpMethod.GET,"/api/**").permitAll()
                                 .antMatchers("/api/auth/**").permitAll()
+                                .antMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
                         .anyRequest().authenticated()
 
                 ).exceptionHandling((exception) ->exception.authenticationEntryPoint(jwtAuthentication)
