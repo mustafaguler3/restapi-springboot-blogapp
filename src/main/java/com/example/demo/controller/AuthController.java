@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.payload.JwtAuthResponse;
 import com.example.demo.payload.LoginDto;
 import com.example.demo.payload.RegisterDto;
 import com.example.demo.service.AuthenticationService;
@@ -21,10 +22,13 @@ public class AuthController {
     }
 
     @PostMapping(value = {"/login","/signin"})
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
-        String response = authenticationService.login(loginDto);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto){
+        String token = authenticationService.login(loginDto);
 
-        return ResponseEntity.ok(response);
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return ResponseEntity.ok(jwtAuthResponse);
     }
 
     @PostMapping(value = {"/register","/signup"})
