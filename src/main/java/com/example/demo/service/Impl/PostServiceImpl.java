@@ -39,6 +39,7 @@ public class PostServiceImpl implements PostService {
         return postResponse;
     }
 
+
     @Override
     public PostResponse getAllPosts(int pageNo,int pageSize,String sortBy,String sortDir) {
 

@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.payload.PostDto;
 import com.example.demo.payload.PostResponse;
 
+import java.util.List;
+
 public interface PostService {
     PostDto createPost(PostDto postDto);
 
