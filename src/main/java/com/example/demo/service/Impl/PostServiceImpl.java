@@ -86,9 +86,10 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(id).orElseThrow(()->new ResourceNotFoundExcetion("Post","id",id));
 
         Category category =
-                categoryRepository.findById(postDto.getCategory().getCategoryId()).orElseThrow(()->new ResourceNotFoundExcetion("Category",
+                categoryRepository.findById(postDto.getCategory().getId()).orElseThrow(()->new ResourceNotFoundExcetion(
+                        "Category",
                 "id",
-                post.getCategory().getCategoryId()));
+                post.getCategory().getId()));
 
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());

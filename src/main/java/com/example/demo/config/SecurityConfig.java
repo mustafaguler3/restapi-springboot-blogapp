@@ -51,6 +51,11 @@ public class SecurityConfig {
                         authorize.antMatchers(HttpMethod.GET,"/api/**").permitAll()
                                 .antMatchers("/api/auth/**").permitAll()
                                 .antMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
+                                .antMatchers("/v3/api-docs/**").permitAll()
+                                .antMatchers("/swagger-ui/**").permitAll()
+                                .antMatchers("/swagger-resources/**").permitAll()
+                                .antMatchers("/swagger-ui.html/**").permitAll()
+                                .antMatchers("/webjars/**").permitAll()
                         .anyRequest().authenticated()
 
                 ).exceptionHandling((exception) ->exception.authenticationEntryPoint(jwtAuthentication)
